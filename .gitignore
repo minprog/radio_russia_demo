@@ -10,3 +10,5 @@ Pipfile.lock
 
 # Bokeh visualisations
 main.html
+
+__pycache__/
