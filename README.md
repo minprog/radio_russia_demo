@@ -9,7 +9,7 @@ De russische overheid wil een goede verdeling van zendfrequenties. Er zijn preci
 Deze codebase is volledig geschreven in Python 3.7. In requirements.txt staan alle benodigde packages om de code succesvol te draaien. Deze zijn gemakkelijk te installeren via pip dmv. de volgende instructie:
 
 ```
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Of via conda:
@@ -20,10 +20,10 @@ conda install --file requirements.txt
 
 ### Gebruik
 
-Een voorbeeldje kan gerund worden door het aanroepen van:
+Een voorbeeldje kan gerund worden door aanroepen van:
 
 ```
-python3 main.py
+python main.py
 ```
 
 Het bestand geeft een voorbeeld voor gebruik van de verschillende functies.
@@ -42,4 +42,3 @@ De hierop volgende lijst beschrijft de belangrijkste mappen en files in het proj
 - Quinten van der Post
 - Wouter Vrielink
 - Okke van Eck
-

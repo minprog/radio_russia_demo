@@ -28,6 +28,7 @@ def random_reconfigure_nodes(graph, nodes, possibilities):
 def random_reassignment(graph, possibilities):
     """
     Algorithm that reassigns nodes that are invalid until each node is valid.
+
     CAUTION: may run indefinitely.
     """
     new_graph = copy.deepcopy(graph)
