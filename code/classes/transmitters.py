@@ -1,5 +1,4 @@
 import csv
-
 from colour import Color
 from collections import defaultdict
 
@@ -19,13 +18,13 @@ class CostScheme:
             # unpack the reader to determine length for colour range
             rows = list(reader)
             red = Color("red")
-            colors = list(red.range_to(Color("blue"), len(rows)))
+            colours = list(red.range_to(Color("blue"), len(rows)))
 
             # Add a transmitter for each of it's schemes
             for count, row in enumerate(rows):
                 costs = eval(row['costs'])
                 for index, cost in enumerate(costs):
-                    schemes[index].append(Transmitter(row['transmitter'], cost, colors[count]))
+                    schemes[index].append(Transmitter(row['transmitter'], cost, colours[count]))
 
         return schemes
 
