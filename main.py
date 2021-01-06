@@ -4,29 +4,31 @@ from code.algorithms import greedy as gr
 from code.visualisation import visualise as vis
 
 if __name__ == "__main__":
-    data_folder = "usa"
+    map_name = "usa"
 
     # Create a graph from our data
-    test_graph = graph.Graph(f"data/{data_folder}/{data_folder}_regions.csv")
+    test_graph = graph.Graph(f"data/{map_name}/{map_name}_regions.csv")
 
     # Create the transmitter cost schemes
     transmitters = transmitters.CostScheme("data/transmitters.csv")
+    scheme = transmitters.get_scheme(1)
 
     # --------------------------- Random reassignment --------------------------
-    random_graph = randomise \
-        .random_reassignment(test_graph, transmitters.get_scheme(1))
+    random_graph = randomise.random_reassignment(test_graph, scheme)
+
     print(f"Value of the configuration after Randomised Assignment: "
           f"{random_graph.calculate_value()}")
 
     # --------------------------- Greedy ---------------------------------------
-    greedy = gr.Greedy(test_graph, transmitters.get_scheme((1)))
+    greedy = gr.Greedy(test_graph, scheme)
     greedy.run()
 
+    # Note that the result will always be the same!
     print(f"Value of the configuration after Greedy: "
           f"{greedy.graph.calculate_value()}")
 
     # --------------------------- Random Greedy ---------------------------------
-    random_greedy = gr.RandomGreedy(test_graph, transmitters.get_scheme((1)))
+    random_greedy = gr.RandomGreedy(test_graph, scheme)
     random_greedy.run()
 
     print(f"Value of the configuration after RandomGreedy: "
@@ -34,4 +36,4 @@ if __name__ == "__main__":
 
     # --------------------------- Visualisation --------------------------------
     vis.visualise(random_greedy.graph,
-                  f"data/{data_folder}/{data_folder}_regions.geojson")
+                  f"data/{map_name}/{map_name}_regions.geojson")
