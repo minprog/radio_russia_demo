@@ -33,7 +33,7 @@ class SimulatedAnnealing(HillClimber):
         # alpha = 0.99
         # self.T = self.T * alpha
 
-        # where alpha can be any value below 1
+        # where alpha can be any value below 1 but above 0
 
     def check_solution(self, new_graph):
         """
