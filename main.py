@@ -21,7 +21,7 @@ if __name__ == "__main__":
     transmitters = transmitters.CostScheme("data/transmitters.csv")
 
     # --------------------------- Random reassignment --------------------------
-    random_graph = randomise.random_reassignment(test_graph, 
+    random_graph = randomise.random_reassignment(test_graph,
                                                  transmitters.get_scheme(1))
     print(f"Value of the configuration after Randomized Assignment: "
           f"{random_graph.calculate_value()}")
@@ -34,13 +34,16 @@ if __name__ == "__main__":
           f"{greedy.graph.calculate_value()}")
 
     # --------------------------- Random Greedy ---------------------------------
-#     random_greedy = gr.RandomGreedy(test_graph, transmitters.get_scheme((1)))
-#     random_greedy.run()
-
-#     print(f"Value of the configuration after RandomGreedy: "
-#           f"{random_greedy.graph.calculate_value()}")
+    # random_greedy = gr.RandomGreedy(test_graph, transmitters.get_scheme((1)))
+    # random_greedy.run()
+    #
+    # print(f"Value of the configuration after RandomGreedy: "
+    #       f"{random_greedy.graph.calculate_value()}")
 
     # --------------------------- Depth First ----------------------------------
+    # NOTE: We use [0:4] to only use the first four transmitters, which makes this
+    # take longer, but we already know (four colour theorem) that it should be
+    # possible...
 
     # depth = df.DepthFirst(test_graph, transmitters.get_scheme(1)[0:4])
     # depth.run()
@@ -49,6 +52,9 @@ if __name__ == "__main__":
     #       f"{depth.graph.calculate_value()}")
 
     # --------------------------- Breadth First --------------------------------
+    # Note: this WILL crash on any of the maps provided, but should work for
+    # smaller examples
+
     # breadth = bf.BreadthFirst(test_graph, transmitters.get_scheme(1)[0:4])
     # breadth.run()
     #
@@ -72,15 +78,15 @@ if __name__ == "__main__":
     # maximum difference in score between the most expensive and the cheapest
     # transmitter is 19.
 
-#     print("Setting up Simulated Annealing...")
-#     simanneal = sa.SimulatedAnnealing(random_graph, transmitters.get_scheme(1),
-#                                       temperature=19)
-
-#     print("Running Simulated Annealing...")
-#     simanneal.run(2000, verbose=True)
-
-#     print(f"Value of the configuration after Simulated Annealing: "
-#           f"{simanneal.graph.calculate_value()}")
+    # print("Setting up Simulated Annealing...")
+    # simanneal = sa.SimulatedAnnealing(random_graph, transmitters.get_scheme(1),
+    #                                   temperature=19)
+    #
+    # print("Running Simulated Annealing...")
+    # simanneal.run(2000, verbose=True)
+    #
+    # print(f"Value of the configuration after Simulated Annealing: "
+    #       f"{simanneal.graph.calculate_value()}")
 
     # --------------------------- Visualisation --------------------------------
     vis.visualise(climber.graph,
