@@ -4,7 +4,7 @@ from bokeh.plotting import figure
 import json
 from matplotlib import pyplot as plt
 
-def visualise(graph, geo_file, fast_plot=False):
+def visualise(graph, geo_file):
     """
     Visualisation code that uses bokeh and geometry data from a JSON file
     to represent a coloured graph.

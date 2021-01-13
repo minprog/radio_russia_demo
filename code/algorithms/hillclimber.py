@@ -1,7 +1,7 @@
 import copy
 import random
 
-from .randomize import random_reconfigure_node
+from .randomise import random_reconfigure_node
 
 
 class HillClimber:
