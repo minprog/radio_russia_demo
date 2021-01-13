@@ -2,7 +2,6 @@ from bokeh.io import show
 from bokeh.models import GeoJSONDataSource
 from bokeh.plotting import figure
 import json
-from matplotlib import pyplot as plt
 
 def visualise(graph, geo_file):
     """
