@@ -83,10 +83,5 @@ if __name__ == "__main__":
 #           f"{simanneal.graph.calculate_value()}")
 
     # --------------------------- Visualisation --------------------------------
-    # Turn fast_plot on for a matplotlib plot, which will be faster than Bokeh.
-    # Bokeh will also be too slow for plotting Russia, so turn on when Russia is
-    # selected as input!
-    fast_plot = False
-
     vis.visualise(climber.graph,
                   f"data/{data_folder}/{data_folder}_regions.geojson")
