@@ -15,7 +15,7 @@ class CostScheme:
         with open(transmitter_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
 
-            # unpack the reader to determine length for colour range
+            # Unpack the reader to determine length for colour range
             rows = list(reader)
             red = Color("red")
             colours = list(red.range_to(Color("blue"), len(rows)))
@@ -48,7 +48,16 @@ class Transmitter:
         self.colour = colour
 
     def __hash__(self):
+        """
+        Makes sure that we can put transmitters in set() and as a key in a
+        dictionary.
+        """
         return hash(self.name)
 
     def __eq__(self, other):
+        """
+        Makes sure that we can compare different transmitters by checking
+        whether two elements are both Transmitter, and whether they have the
+        same name.
+        """
         return self.__class__ == other.__class__ and self.name == other.name
