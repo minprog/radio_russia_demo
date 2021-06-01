@@ -16,14 +16,15 @@ def visualise(graph, geo_file, fast_plot=False):
     # Get the nodes of the regions in order of uid.
     regions = [node for node in graph.nodes.values()]
     name = [node.id for node in regions]
-    cost = [node.get_value().value if node is not None else 0
+    cost = [node.value.value if node is not None else 0
             for node in regions]
-    colour = [node.get_value().colour.get_web() if node is not None else "grey"
+    colour = [node.value.colour.get_web() if node is not None else "grey"
               for node in regions]
-    transmitter = [node.get_value().name if node is not None else "None"
+    transmitter = [node.value.name if node is not None else "None"
                    for node in regions]
 
     for index, region in enumerate(data['features']):
+        region['properties']['full_name'] = region['properties']['name']
         region['properties']['name'] = name[index]
         region['properties']['cost'] = cost[index]
         region['properties']['colour'] = colour[index]
@@ -35,7 +36,7 @@ def visualise(graph, geo_file, fast_plot=False):
     # Set the Bokeh tooltips.
     tooltips = [
         ("(x,y)", "($x, $y)"),
-        ("Region", "@name"),
+        ("Region", "@full_name"),
         ("Transmitter", "@transmitter"),
         ("Cost", "@cost")
     ]

@@ -7,14 +7,14 @@ def random_assignment(graph, possibilities):
     Randomly assign each node with one of the possibilities.
     """
     for node in graph.nodes.values():
-        node.set_value(random.choice(possibilities))
+        node.value = random.choice(possibilities)
 
 
 def random_reconfigure_node(graph, node, possibilities):
     """
     Takes a node and assigns each node with one of the possibilities.
     """
-    node.set_value(random.choice(possibilities))
+    node.value = random.choice(possibilities)
 
 
 def random_reconfigure_nodes(graph, nodes, possibilities):

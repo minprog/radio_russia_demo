@@ -4,7 +4,7 @@ from code.algorithms import greedy as gr
 from code.visualisation import visualise as vis
 
 if __name__ == "__main__":
-    map_name = "usa"
+    map_name = "nl"
 
     # Create a graph from our data
     test_graph = graph.Graph(f"data/{map_name}/{map_name}_regions.csv")

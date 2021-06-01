@@ -72,7 +72,7 @@ class Graph():
         """
         value = 0
         for node in self.nodes.values():
-            value += node.get_value().value
+            value += node.value.value
 
         return value
 
