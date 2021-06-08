@@ -1,15 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>40</x>
-      <y>0</y>
-      <w>270</w>
-      <h>200</h>
-    </coordinates>
-    <panel_attributes>Graph
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>40</x><y>0</y><w>270</w><h>200</h></coordinates><panel_attributes>Graph
 --
 nodes: {Int: Node}
 --
@@ -18,18 +7,7 @@ load_neighbours(self, source_file): None
 get_violation(self): [Node]
 is_solution(self): Bool
 calculate_value(self): Int
-get_empty_node(self): Node/None</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>540</x>
-      <y>0</y>
-      <w>230</w>
-      <h>200</h>
-    </coordinates>
-    <panel_attributes>Node
+get_empty_node(self): Node/None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>540</x><y>0</y><w>230</w><h>200</h></coordinates><panel_attributes>Node
 --
 name: String
 id: Int
@@ -39,79 +17,19 @@ value: Transmitter
 add_neighbour(self, node): None
 get_possibilities(self, options): []
 is_valid(self): Bool
-set_value(self, value): None
-get_value(self): Int
 has_value(self): Bool
 
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>300</x>
-      <y>20</y>
-      <w>260</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes>
-    <additional_attributes>10.0;10.0;240.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>30</x>
-      <y>260</y>
-      <w>370</w>
-      <h>210</h>
-    </coordinates>
-    <panel_attributes>CostScheme
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>20</y><w>260</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;10;240;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>260</y><w>370</w><h>210</h></coordinates><panel_attributes>CostScheme
 --
 schemes: {Int: [Transmitter]}
 --
 load_transmitters(self, transmitter_file): {Int: [Transmitter]}
-get_scheme(index): [Transmitter]</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>390</x>
-      <y>280</y>
-      <w>170</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes>
-    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>540</x>
-      <y>280</y>
-      <w>120</w>
-      <h>190</h>
-    </coordinates>
-    <panel_attributes>Transmitter
+get_scheme(index): [Transmitter]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>280</y><w>170</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;10;150;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>540</x><y>280</y><w>120</w><h>190</h></coordinates><panel_attributes>Transmitter
 --
 name: String
 value: Int
 colour: Color
 --
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>590</x>
-      <y>190</y>
-      <w>30</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
-  </element>
-</diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>590</x><y>190</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element></diagram>
