@@ -11,6 +11,9 @@ Pipfile.lock
 # Bokeh visualisations
 main.html
 
+# Profile files
+output.prof
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
