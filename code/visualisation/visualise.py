@@ -23,6 +23,7 @@ def visualise(graph, geo_file):
                    for node in regions]
 
     for index, region in enumerate(data['features']):
+        region['properties']['full_name'] = region['properties'].get('name') if region['properties'].get('name') else name[index]
         region['properties']['name'] = name[index]
         region['properties']['cost'] = cost[index]
         region['properties']['colour'] = colour[index]
@@ -34,7 +35,7 @@ def visualise(graph, geo_file):
     # Set the Bokeh tooltips.
     tooltips = [
         ("(x,y)", "($x, $y)"),
-        ("Region", "@name"),
+        ("Region", "@full_name"),
         ("Transmitter", "@transmitter"),
         ("Cost", "@cost")
     ]
