@@ -30,7 +30,7 @@ class DepthFirst:
         # Add an instance of the graph to the stack, with each unique value assigned to the node.
         for value in values:
             new_graph = copy.deepcopy(graph)
-            new_graph.nodes[node.id].set_value(value)
+            new_graph.nodes[node.id].value = value
             self.states.append(new_graph)
 
     def check_solution(self, new_graph):
