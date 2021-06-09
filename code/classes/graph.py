@@ -61,7 +61,7 @@ class Graph():
         False otherwise.
         """
         for node in self.nodes.values():
-            if not node.has_value():
+            if not node.value:
                 return False
 
         return True
@@ -72,7 +72,7 @@ class Graph():
         """
         value = 0
         for node in self.nodes.values():
-            value += node.get_value().value
+            value += node.value.value
 
         return value
 
@@ -81,7 +81,7 @@ class Graph():
         Returns the first empty node.
         """
         for node in self.nodes.values():
-            if not node.has_value():
+            if not node.value:
                 return node
 
         return None

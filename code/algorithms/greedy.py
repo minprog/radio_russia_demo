@@ -36,7 +36,7 @@ class Greedy:
             node_possibilities.sort(key=lambda transmitter: transmitter.value)
 
             # Assign the lowest value possibility to the node
-            node.set_value(node_possibilities[0])
+            node.value = node_possibilities[0]
 
 
 class RandomGreedy(Greedy):

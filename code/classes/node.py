@@ -17,7 +17,7 @@ class Node():
 
         unavailable_options = set()
         for neighbour in self.neighbours.values():
-            unavailable_options.add(neighbour.get_value())
+            unavailable_options.add(neighbour.value)
 
         return list(available_options - unavailable_options)
 
@@ -34,12 +34,6 @@ class Node():
                 return False
 
         return True
-
-    def set_value(self, value):
-        self.value = value
-
-    def get_value(self):
-        return self.value
 
     def has_value(self):
         return self.value is not None
