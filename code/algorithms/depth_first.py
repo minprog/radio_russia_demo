@@ -4,13 +4,12 @@ from code.classes.model import Model
 
 class DepthFirst:
     """
-    A Depth First algorithm that builds a stack of graphs with a unique assignment of nodes for each instance.
+    A Depth First algorithm that builds a stack of models with a unique assignment of nodes for each instance.
     """
-    def __init__(self, graph, transmitters):
-        self.graph = graph
+    def __init__(self, model, transmitters):
         self.transmitters = transmitters
 
-        self.states = [Model(graph)]
+        self.states = [model]
 
         self.best_solution = None
         self.best_value = float('inf')
@@ -28,7 +27,7 @@ class DepthFirst:
         # Retrieve all valid possible values for the node.
         values = model.get_possibilities(node, self.transmitters)
 
-        # Add an instance of the graph to the stack, with each unique value assigned to the node.
+        # Add an instance of the model to the stack, with each unique value assigned to the node.
         for value in values:
             new_model = model.copy()
             new_model.set_value(node, value)
@@ -61,9 +60,9 @@ class DepthFirst:
                 self.build_children(new_model, node)
             else:
                 # Stop if we find a solution
-                self.check_solution(new_model)
-                break
+                # self.check_solution(new_model)
+                # break
 
-                # or ontinue looking for better graph
-                # self.check_solution(new_graph)
+                # or ontinue looking for better solution
+                self.check_solution(new_model)
 

@@ -42,9 +42,3 @@ class Graph():
                 for neighbour in neighbours:
                     neighbour = self.nodes[neighbour]
                     self.nodes[node_id].add_neighbour(neighbour)
-
-    def get_neighbours(self, node):
-        """
-        Returns a list of all neighbours of a node.
-        """
-        return self.nodes[node].get_neighbours()

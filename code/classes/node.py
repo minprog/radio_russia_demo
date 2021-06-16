@@ -2,14 +2,14 @@ class Node():
     def __init__(self, name, uid):
         self.name = name
         self.id = uid
-        self.neighbours = {}
+        self.neighbours = set()
 
     def add_neighbour(self, node):
-        self.neighbours[node.id] = node
+        self.neighbours.add(node)
 
     def get_neighbours(self):
         """Returns list of own neighbours"""
-        return self.neighbours.values()
+        return list(self.neighbours)
 
     def __repr__(self):
         """

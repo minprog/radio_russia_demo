@@ -55,7 +55,7 @@ class HillClimber:
             # Nice trick to only print if variable is set to True
             print(f'Iteration {iteration}/{iterations}, current value: {self.value}') if verbose else None
 
-            # Create a copy of the graph to simulate the change
+            # Create a copy of the model to simulate the change
             new_model = self.model.copy()
 
             self.mutate(new_model, number_of_nodes=mutate_nodes_number)

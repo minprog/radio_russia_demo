@@ -1,7 +1,7 @@
 class Model():
     def __init__(self, graph):
         self.graph = graph
-        self.solution = {node.id: None for node in graph.nodes.values()}
+        self.solution = {node: None for node in graph.nodes.values()}
 
     def get_possibilities(self, node, options):
         """
@@ -11,8 +11,8 @@ class Model():
         available_options = set(options)
 
         unavailable_options = set()
-        for neighbour in self.graph.get_neighbours(node):
-            unavailable_options.add(self.solution[neighbour.id])
+        for neighbour in node.get_neighbours():
+            unavailable_options.add(self.solution[neighbour])
 
         return list(available_options - unavailable_options)
 
@@ -24,7 +24,7 @@ class Model():
         if not self.has_value(node):
             return False
 
-        for neighbour in self.graph.get_neighbours(node):
+        for neighbour in node.get_neighbours():
             if self.solution[neighbour] == self.solution[node]:
                 return False
 

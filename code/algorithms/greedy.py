@@ -19,7 +19,7 @@ class Greedy:
 
     def run(self):
         """
-        Greedily assigns the lowest costing transmitters to the nodes of the graph.
+        Greedily assigns the lowest costing transmitters to the nodes of the model.
         """
         nodes = list(self.model.solution)
 

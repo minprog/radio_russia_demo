@@ -6,7 +6,7 @@ from .hillclimber import HillClimber
 
 class SimulatedAnnealing(HillClimber):
     """
-    The SimulatedAnnealing class that changes a random node in the graph to a random valid value.
+    The SimulatedAnnealing class that changes a random node in the model to a random valid value.
     Each improvement or equivalent solution is kept for the next iteration.
     Also sometimes accepts solutions that are worse, depending on the current temperature.
 
@@ -44,14 +44,14 @@ class SimulatedAnnealing(HillClimber):
         new_value = model.calculate_value()
         old_value = self.value
 
-        # Calculate the probability of accepting this new graph
+        # Calculate the probability of accepting this new solution
         delta = new_value - old_value
         probability = math.exp(-delta / self.T)
 
         # NOTE: Keep in mind that if we want to maximize the value, we use:
         # delta = old_value - new_value
 
-        # Pull a random number between 0 and 1 and see if we accept the graph!
+        # Pull a random number between 0 and 1 and see if we accept the soltuion!
         if random.random() < probability:
             self.model = model
             self.value = new_value
