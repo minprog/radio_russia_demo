@@ -12,7 +12,7 @@ from code.visualisation import visualise as vis
 if __name__ == "__main__":
     # Watch out with large datafiles when running depth- and especially
     # breadth-first, since they can be really slow.
-    data_folder = "usa"
+    data_folder = "nl"
 
     # Create a graph from our data
     test_graph = graph.Graph(f"data/{data_folder}/{data_folder}_regions.csv")
@@ -21,17 +21,17 @@ if __name__ == "__main__":
     transmitters = transmitters.CostScheme("data/transmitters.csv")
 
     # --------------------------- Random reassignment --------------------------
-    random_graph = randomise.random_reassignment(test_graph,
-                                                 transmitters.get_scheme(1))
-    print(f"Value of the configuration after Randomized Assignment: "
-          f"{random_graph.calculate_value()}")
+    # random_graph = randomise.random_reassignment(test_graph,
+    #                                              transmitters.get_scheme(1))
+    # print(f"Value of the configuration after Randomized Assignment: "
+    #       f"{random_graph.calculate_value()}")
 
     # --------------------------- Greedy ---------------------------------------
-    greedy = gr.Greedy(test_graph, transmitters.get_scheme((1)))
-    greedy.run()
+    # greedy = gr.Greedy(test_graph, transmitters.get_scheme((1)))
+    # greedy.run()
 
-    print(f"Value of the configuration after Greedy: "
-          f"{greedy.graph.calculate_value()}")
+    # print(f"Value of the configuration after Greedy: "
+    #       f"{greedy.graph.calculate_value()}")
 
     # --------------------------- Random Greedy ---------------------------------
     # random_greedy = gr.RandomGreedy(test_graph, transmitters.get_scheme((1)))
@@ -45,11 +45,11 @@ if __name__ == "__main__":
     # take longer, but we already know (four colour theorem) that it should be
     # possible...
 
-    # depth = df.DepthFirst(test_graph, transmitters.get_scheme(1)[0:4])
-    # depth.run()
-    #
-    # print(f"Value of the configuration after Depth First: "
-    #       f"{depth.graph.calculate_value()}")
+    depth = df.DepthFirst(test_graph, transmitters.get_scheme(1)[0:4])
+    depth.run()
+    
+    print(f"Value of the configuration after Depth First: "
+          f"{depth.graph.calculate_value()}")
 
     # --------------------------- Breadth First --------------------------------
     # Note: this WILL crash on any of the maps provided, but should work for
@@ -62,14 +62,14 @@ if __name__ == "__main__":
     #       f"{breadth.graph.calculate_value()}")
 
     # --------------------------- Hill Climber ---------------------------------
-    print("Setting up Hill Climber...")
-    climber = hc.HillClimber(random_graph, transmitters.get_scheme(1))
+    # print("Setting up Hill Climber...")
+    # climber = hc.HillClimber(random_graph, transmitters.get_scheme(1))
 
-    print("Running Hill Climber...")
-    climber.run(2000, verbose=True)
+    # print("Running Hill Climber...")
+    # climber.run(2000, verbose=True)
 
-    print(f"Value of the configuration after Hill Climber: "
-          f"{climber.graph.calculate_value()}")
+    # print(f"Value of the configuration after Hill Climber: "
+    #       f"{climber.graph.calculate_value()}")
 
     # --------------------------- Simulated Annealing --------------------------
     # It is very difficult to find a good starting temperature for SA. A rule to
@@ -89,5 +89,5 @@ if __name__ == "__main__":
     #       f"{simanneal.graph.calculate_value()}")
 
     # --------------------------- Visualisation --------------------------------
-    vis.visualise(climber.graph,
-                  f"data/{data_folder}/{data_folder}_regions.geojson")
+    # vis.visualise(climber.graph,
+    #               f"data/{data_folder}/{data_folder}_regions.geojson")
