@@ -60,6 +60,7 @@ class DepthFirst:
                 self.build_children(new_graph, node)
             else:
                 # Stop if we find a solution
+                # self.check_solution(new_graph)
                 # break
 
                 # or ontinue looking for better graph
