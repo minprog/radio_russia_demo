@@ -67,5 +67,3 @@ class DepthFirst:
                 # or ontinue looking for better graph
                 # self.check_solution(new_graph)
 
-        # Update the input graph with the best result found.
-        self.graph = self.best_solution

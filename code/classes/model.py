@@ -21,7 +21,7 @@ class Model():
         Returns whether the node is valid. A node is valid when there are no
         neighbours with the same value, and it's value is not None.
         """
-        if not node.has_value():
+        if not self.has_value(node):
             return False
 
         for neighbour in node.neighbours.values():
@@ -31,11 +31,14 @@ class Model():
         return True
 
     def has_value(self, node):
+        """
+        Returns a boolean that tells if a node is assigned a value.
+        """
         return self.solution[node] is not None
 
     def get_violations(self):
         """
-        Returns the ids of all nodes that have a neighbour with the same value.
+        Returns all nodes that have a neighbour with the same value.
         """
         violations = []
 
@@ -77,9 +80,20 @@ class Model():
         return None
 
     def set_value(self, node, value):
+        """
+        Assign a value to a node in the solution.
+        """
         self.solution[node] = value
 
+    def get_value(self, node):
+        """
+        """
+        return self.solution[node]
+
     def copy(self):
+        """
+        Return a copy of self.
+        """
         other = Model(self.graph)
         for node in self.solution:
             other.solution[node] = self.solution[node]

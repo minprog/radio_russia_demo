@@ -6,8 +6,8 @@ class Greedy:
     """
     The Greedy class that assigns the best possible value to each node one by one.
     """
-    def __init__(self, graph, transmitters):
-        self.graph = copy.deepcopy(graph)
+    def __init__(self, model, transmitters):
+        self.model = model
         self.transmitters = transmitters
 
     def get_next_node(self, nodes):
@@ -21,7 +21,7 @@ class Greedy:
         """
         Greedily assigns the lowest costing transmitters to the nodes of the graph.
         """
-        nodes = list(self.graph.nodes.values())
+        nodes = list(self.model.solution)
 
         node_possibilities = self.transmitters
 
@@ -30,13 +30,13 @@ class Greedy:
             node = self.get_next_node(nodes)
 
             # Retrieve all valid possible values for a node
-            node_possibilities = node.get_possibilities(self.transmitters)
+            node_possibilities = self.model.get_possibilities(node, self.transmitters)
 
             # Sort them by value in ascending order
             node_possibilities.sort(key=lambda transmitter: transmitter.value)
 
             # Assign the lowest value possibility to the node
-            node.set_value(node_possibilities[0])
+            self.model.set_value(node, node_possibilities[0])
 
 
 class RandomGreedy(Greedy):

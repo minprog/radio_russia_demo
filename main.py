@@ -1,4 +1,4 @@
-from code.classes import graph, transmitters
+from code.classes import graph, transmitters, model
 
 from code.algorithms import randomise
 from code.algorithms import greedy as gr
@@ -21,24 +21,24 @@ if __name__ == "__main__":
     transmitters = transmitters.CostScheme("data/transmitters.csv")
 
     # --------------------------- Random reassignment --------------------------
-#     random_graph = randomise.random_reassignment(test_graph,
-#                                                  transmitters.get_scheme(1))
-#     print(f"Value of the configuration after Randomized Assignment: "
-#           f"{random_graph.calculate_value()}")
+    # random_graph = randomise.random_reassignment(model.Model(test_graph),
+    #                                              transmitters.get_scheme(1))
+    # print(f"Value of the configuration after Randomized Assignment: "
+    #       f"{random_graph.calculate_value()}")
 
     # --------------------------- Greedy ---------------------------------------
-#     greedy = gr.Greedy(test_graph, transmitters.get_scheme((1)))
-#     greedy.run()
+    # greedy = gr.Greedy(model.Model(test_graph), transmitters.get_scheme((1)))
+    # greedy.run()
 
-#     print(f"Value of the configuration after Greedy: "
-#           f"{greedy.graph.calculate_value()}")
+    # print(f"Value of the configuration after Greedy: "
+    #       f"{greedy.model.calculate_value()}")
 
     # --------------------------- Random Greedy ---------------------------------
-    # random_greedy = gr.RandomGreedy(test_graph, transmitters.get_scheme((1)))
+    # random_greedy = gr.RandomGreedy(model.Model(test_graph), transmitters.get_scheme((1)))
     # random_greedy.run()
-    #
+    
     # print(f"Value of the configuration after RandomGreedy: "
-    #       f"{random_greedy.graph.calculate_value()}")
+    #       f"{random_greedy.model.calculate_value()}")
 
     # --------------------------- Depth First ----------------------------------
     # NOTE: We use [0:4] to only use the first four transmitters, which makes this
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     depth.run()
     
     print(f"Value of the configuration after Depth First: "
-          f"{depth.graph.calculate_value()}")
+          f"{depth.best_solution.calculate_value()}")
 
     # --------------------------- Breadth First --------------------------------
     # Note: this WILL crash on any of the maps provided, but should work for
@@ -57,19 +57,19 @@ if __name__ == "__main__":
 
     # breadth = bf.BreadthFirst(test_graph, transmitters.get_scheme(1)[0:4])
     # breadth.run()
-    #
+    
     # print(f"Value of the configuration after Breadth First: "
     #       f"{breadth.graph.calculate_value()}")
 
     # --------------------------- Hill Climber ---------------------------------
-#     print("Setting up Hill Climber...")
-#     climber = hc.HillClimber(random_graph, transmitters.get_scheme(1))
+    # print("Setting up Hill Climber...")
+    # climber = hc.HillClimber(random_graph, transmitters.get_scheme(1))
 
-#     print("Running Hill Climber...")
-#     climber.run(2000, verbose=True)
+    # print("Running Hill Climber...")
+    # climber.run(2000, verbose=True)
 
-#     print(f"Value of the configuration after Hill Climber: "
-#           f"{climber.graph.calculate_value()}")
+    # print(f"Value of the configuration after Hill Climber: "
+    #       f"{climber.model.calculate_value()}")
 
     # --------------------------- Simulated Annealing --------------------------
     # It is very difficult to find a good starting temperature for SA. A rule to
@@ -81,13 +81,13 @@ if __name__ == "__main__":
     # print("Setting up Simulated Annealing...")
     # simanneal = sa.SimulatedAnnealing(random_graph, transmitters.get_scheme(1),
     #                                   temperature=19)
-    #
+    
     # print("Running Simulated Annealing...")
     # simanneal.run(2000, verbose=True)
-    #
+    
     # print(f"Value of the configuration after Simulated Annealing: "
-    #       f"{simanneal.graph.calculate_value()}")
+    #       f"{simanneal.model.calculate_value()}")
 
-    # --------------------------- Visualisation --------------------------------
-#     vis.visualise(climber.graph,
-#                   f"data/{data_folder}/{data_folder}_regions.geojson")
+    # # --------------------------- Visualisation --------------------------------
+    # vis.visualise(climber.model,
+    #               f"data/{data_folder}/{data_folder}_regions.geojson")
