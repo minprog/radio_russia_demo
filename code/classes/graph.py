@@ -17,7 +17,7 @@ class Graph():
             reader = csv.DictReader(in_file)
 
             for row in reader:
-                nodes[row['id']] = Node(row['id'], int(row['id']))
+                nodes[int(row['id'])] = Node(row['id'], int(row['id']))
 
         return nodes
 
@@ -34,13 +34,17 @@ class Graph():
                 for neighbour in row['neighbours'].split(','):
                     # Only add if the result is not an empty string
                     if neighbour.strip('[] ') != '':
-                        neighbours.append(neighbour.strip('[] '))
+                        neighbours.append(int(neighbour.strip('[] ')))
 
-                node_id = row['id']
+                node_id = int(row['id'])
 
                 # Add the neighbours to the correct node
                 for neighbour in neighbours:
                     neighbour = self.nodes[neighbour]
                     self.nodes[node_id].add_neighbour(neighbour)
 
-    
+    def get_neighbours(self, node):
+        """
+        Returns a list of all neighbours of a node.
+        """
+        return self.nodes[node].get_neighbours()
