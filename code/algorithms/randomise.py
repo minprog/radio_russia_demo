@@ -31,6 +31,8 @@ def random_reassignment(model, possibilities):
 
     CAUTION: may run indefinitely.
     """
+    model = model.copy()
+
     # Randomly assign a value to each of the nodes
     random_assignment(model, possibilities)
 

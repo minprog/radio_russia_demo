@@ -7,6 +7,7 @@ class DepthFirst:
     A Depth First algorithm that builds a stack of models with a unique assignment of nodes for each instance.
     """
     def __init__(self, model, transmitters):
+        self.model = model.copy()
         self.transmitters = transmitters
 
         self.states = [model]
@@ -66,3 +67,4 @@ class DepthFirst:
                 # or ontinue looking for better solution
                 self.check_solution(new_model)
 
+        self.model = self.best_solution

@@ -1,7 +1,7 @@
 class Model():
     def __init__(self, graph):
         self.graph = graph
-        self.solution = {node: None for node in graph.nodes.values()}
+        self.solution = {node: None for node in self.graph.get_nodes()}
 
     def get_possibilities(self, node, options):
         """
@@ -42,7 +42,7 @@ class Model():
         """
         violations = []
 
-        for node in self.solution:
+        for node in self.graph.get_nodes():
             if not self.is_valid(node):
                 violations.append(node)
 
@@ -53,8 +53,8 @@ class Model():
         Returns True if each node in the graph is assigned a value.
         False otherwise.
         """
-        for node in self.solution:
-            if not self.has_value(node):
+        for node in self.graph.get_nodes():
+            if self.has_value(node) is None:
                 return False
 
         return True
@@ -64,9 +64,9 @@ class Model():
         Returns the sum of the values of all nodes.
         """
         value = 0
-        for transmitter in self.solution.values():
-            value += transmitter.value
-
+        for node in self.graph.get_nodes():
+            value += self.solution[node].value
+            
         return value
 
     def get_empty_node(self):
@@ -95,8 +95,8 @@ class Model():
         """
         Return a copy of self.
         """
-        other = Model(self.graph)
-        for node in self.solution:
-            other.solution[node] = self.solution[node]
-        
-        return other
+        new = Model(self.graph)
+
+        new.solution.update(self.solution)
+
+        return new

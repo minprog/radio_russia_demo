@@ -1,35 +1,49 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>40</x><y>0</y><w>270</w><h>200</h></coordinates><panel_attributes>Graph
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;240&lt;/x&gt;&lt;y&gt;250&lt;/y&gt;&lt;w&gt;190&lt;/w&gt;&lt;h&gt;40&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;lt=&amp;lt;-
+m1=0..n&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;10;170;10&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;240&lt;/x&gt;&lt;y&gt;250&lt;/y&gt;&lt;w&gt;190&lt;/w&gt;&lt;h&gt;40&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;lt=&amp;lt;-
+m1=0..n&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;10;170;10&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;240&lt;/x&gt;&lt;y&gt;250&lt;/y&gt;&lt;w&gt;190&lt;/w&gt;&lt;h&gt;40&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;lt=&amp;lt;-
+m1=0..n&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;10;170;10&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>50</x><y>10</y><w>270</w><h>200</h></coordinates><panel_attributes>Graph
 --
 nodes: {Int: Node}
 --
 load_nodes(self, source_file): {Int: Node}
 load_neighbours(self, source_file): None
-get_violation(self): [Node]
-is_solution(self): Bool
-calculate_value(self): Int
-get_empty_node(self): Node/None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>540</x><y>0</y><w>230</w><h>200</h></coordinates><panel_attributes>Node
+get_nodes(self): [Node]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>470</x><y>30</y><w>230</w><h>200</h></coordinates><panel_attributes>Node
 --
 name: String
 id: Int
-neighbours: Dict
-value: Transmitter
+neighbours: Set
 --
 add_neighbour(self, node): None
-get_possibilities(self, options): []
-is_valid(self): Bool
-has_value(self): Bool
+get_neighbours(self): [Node]
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>20</y><w>260</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>10;10;240;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>260</y><w>370</w><h>210</h></coordinates><panel_attributes>CostScheme
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>310</x><y>30</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;10;160;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>590</x><y>310</y><w>320</w><h>210</h></coordinates><panel_attributes>CostScheme
 --
 schemes: {Int: [Transmitter]}
 --
 load_transmitters(self, transmitter_file): {Int: [Transmitter]}
-get_scheme(index): [Transmitter]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>280</y><w>170</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>10;10;150;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>540</x><y>280</y><w>120</w><h>190</h></coordinates><panel_attributes>Transmitter
+get_scheme(index): [Transmitter]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>330</y><w>90</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>70;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>410</x><y>330</y><w>120</w><h>190</h></coordinates><panel_attributes>Transmitter
 --
 name: String
 value: Int
 colour: Color
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>590</x><y>190</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>280</y><w>270</w><h>230</h></coordinates><panel_attributes>Model
+--
+graph: Graph
+solution: {Node: value}
+--
+get_violations(self): [Node]
+is_solution(self): Bool
+calculate_value(self): Int
+get_empty_node(self): Node/None
+get_possibilities(self, node, options): []
+is_valid(self, node): Bool
+has_value(self, node): Bool
+get_value(self, node): Transmitter/None
+set_value(self, node, value): None
+copy(self): Model</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>0</x><y>20</y><w>70</w><h>320</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>40;290;10;290;10;10;50;10</additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>30</y><w>190</w><h>330</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;300;60;300;170;10</additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>320</y><w>130</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;10;80;10;110;20</additional_attributes></element></diagram>

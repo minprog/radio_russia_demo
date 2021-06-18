@@ -49,7 +49,7 @@ if __name__ == "__main__":
     depth.run()
     
     print(f"Value of the configuration after Depth First: "
-          f"{depth.best_solution.calculate_value()}")
+          f"{depth.model.calculate_value()}")
 
     # --------------------------- Breadth First --------------------------------
     # Note: this WILL crash on any of the maps provided, but should work for
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     breadth.run()
     
     print(f"Value of the configuration after Breadth First: "
-          f"{breadth.best_solution.calculate_value()}")
+          f"{breadth.model.calculate_value()}")
 
     # --------------------------- Hill Climber ---------------------------------
     # print("Setting up Hill Climber...")

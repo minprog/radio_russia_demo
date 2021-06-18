@@ -6,14 +6,14 @@ from .randomise import random_reconfigure_node
 
 class HillClimber:
     """
-    The HillClimber class that changes a random node in the graph to a random valid value. Each improvement or
+    The HillClimber class that changes a random node in the model to a random valid value. Each improvement or
     equivalent solution is kept for the next iteration.
     """
     def __init__(self, model, transmitters):
         if not model.is_solution():
             raise Exception("HillClimber requires a complete solution.")
 
-        self.model = model
+        self.model = model.copy()
         self.value = model.calculate_value()
 
         self.transmitters = transmitters

@@ -3,7 +3,7 @@ from .depth_first import DepthFirst
 
 class BreadthFirst(DepthFirst):
     """"
-    A Depth First algorithm that builds a queue of graphs with a unique assignment of nodes for each instance.
+    A Depth First algorithm that builds a queue of models with a unique assignment of nodes for each instance.
 
     Almost all of the functions are eqal to those of the DepthFirst class, which is why
     we use that as a parent class.
