@@ -89,5 +89,5 @@ if __name__ == "__main__":
           f"{simanneal.model.calculate_value()}")
 
     # # --------------------------- Visualisation --------------------------------
-    # vis.visualise(climber.model,
-    #               f"data/{data_folder}/{data_folder}_regions.geojson")
+    vis.visualise(climber.model,
+                  f"data/{data_folder}/{data_folder}_regions.geojson")
