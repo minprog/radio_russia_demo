@@ -14,7 +14,7 @@ class Greedy:
         """
         Gets the next node with the most neighbours and removes it from the list.
         """
-        nodes.sort(key=lambda node: len(node.neighbours))
+        nodes.sort(key=lambda node: len(node.get_neighbours()))
         return nodes.pop()
 
     def run(self):
