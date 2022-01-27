@@ -51,6 +51,7 @@ class DepthFirst:
         Runs the algorithm untill all possible states are visited.
         """
         self.states.append(self.model.copy())
+        
         step = 0
         while self.states:
             step += 1
