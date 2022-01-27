@@ -1,4 +1,5 @@
-from code.classes import graph, transmitters, model
+from code.classes import graph, transmitters
+from code.classes import model
 
 from code.algorithms import randomise
 from code.algorithms import greedy as gr
@@ -20,32 +21,34 @@ if __name__ == "__main__":
     # Create the transmitter cost schemes
     transmitters = transmitters.CostScheme("data/transmitters.csv")
 
+    test_model = model.Model(test_graph, transmitters.get_scheme(1))
+
     # --------------------------- Random reassignment --------------------------
-    random_model = randomise.random_reassignment(model.Model(test_graph),
-                                                 transmitters.get_scheme(1))
+    random_model = randomise.random_reassignment(test_model)
     print(f"Value of the configuration after Randomized Assignment: "
           f"{random_model.calculate_value()}")
 
     # --------------------------- Greedy ---------------------------------------
-    greedy = gr.Greedy(model.Model(test_graph), transmitters.get_scheme((1)))
+    greedy = gr.Greedy(test_model)
     greedy.run()
 
     print(f"Value of the configuration after Greedy: "
           f"{greedy.model.calculate_value()}")
 
     # --------------------------- Random Greedy ---------------------------------
-    random_greedy = gr.RandomGreedy(model.Model(test_graph), transmitters.get_scheme((1)))
+    random_greedy = gr.RandomGreedy(test_model)
     random_greedy.run()
     
     print(f"Value of the configuration after RandomGreedy: "
           f"{random_greedy.model.calculate_value()}")
 
     # --------------------------- Depth First ----------------------------------
-    # NOTE: We use [0:4] to only use the first four transmitters, which makes this
-    # take longer, but we already know (four colour theorem) that it should be
+    # NOTE: We use [0:4] to only use the first four transmitters to shorten 
+    # runtime, but we already know (four colour theorem) that it should be
     # possible...
 
-    depth = df.DepthFirst(model.Model(test_graph), transmitters.get_scheme(1)[0:4])
+    depth = df.DepthFirst(test_model)
+    depth.model.transmitters = depth.model.transmitters[0:4]
     depth.run()
     
     print(f"Value of the configuration after Depth First: "
@@ -55,15 +58,16 @@ if __name__ == "__main__":
     # Note: this WILL crash on any of the maps provided, but should work for
     # smaller examples
 
-    breadth = bf.BreadthFirst(model.Model(test_graph), transmitters.get_scheme(1)[0:4])
-    breadth.run()
+    breadth = bf.BreadthFirst(test_model)
+    breadth.model.transmitters = breadth.model.transmitters[0:4]
+    breadth.run(verbose=True)
     
     print(f"Value of the configuration after Breadth First: "
           f"{breadth.model.calculate_value()}")
 
     # --------------------------- Hill Climber ---------------------------------
-    # print("Setting up Hill Climber...")
-    climber = hc.HillClimber(random_model, transmitters.get_scheme(1))
+    print("Setting up Hill Climber...")
+    climber = hc.HillClimber(random_model)
 
     print("Running Hill Climber...")
     climber.run(20000, verbose=False)
@@ -79,15 +83,15 @@ if __name__ == "__main__":
     # transmitter is 19.
 
     print("Setting up Simulated Annealing...")
-    simanneal = sa.SimulatedAnnealing(random_model, transmitters.get_scheme(1),
+    simanneal = sa.SimulatedAnnealing(random_model,
                                       temperature=19)
     
     print("Running Simulated Annealing...")
-    simanneal.run(20000, verbose=False)
+    simanneal.run(2000, verbose=True)
     
     print(f"Value of the configuration after Simulated Annealing: "
-          f"{simanneal.model.calculate_value()}")
+          f"{simanneal.graph.calculate_value()}")
 
-    # # --------------------------- Visualisation --------------------------------
+    # --------------------------- Visualisation --------------------------------
     vis.visualise(climber.model,
                   f"data/{data_folder}/{data_folder}_regions.geojson")

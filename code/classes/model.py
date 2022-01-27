@@ -1,14 +1,79 @@
-class Model():
-    def __init__(self, graph):
-        self.graph = graph
-        self.solution = {node: None for node in self.graph.get_nodes()}
+import copy
+from .node import Node
+from .graph import Graph
+from .transmitters import Transmitter
 
-    def get_possibilities(self, node, options):
+class Model:
+    def __init__(self, graph:Graph, transmitters:list[Transmitter]):
+        self.graph = graph
+        self.transmitters = transmitters
+
+        self.solution = {node: None for node in graph.get_nodes()}
+
+    def get_violations(self) -> list[Node]:
+        """
+        Returns the ids of all nodes that have a neighbour with the same value.
+        """
+        violations = []
+
+        for node in self.get_nodes():
+            if not self.is_valid(node):
+                violations.append(node)
+
+        return violations
+
+    def is_solution(self) -> bool:
+        """
+        Returns True if each node in the graph is assigned a value.
+        False otherwise.
+        """
+        for node in self.get_nodes():
+            if not self.has_value(node):
+                return False
+
+        return True
+
+    def calculate_value(self) -> int:
+        """
+        Returns the sum of the values of all nodes.
+        """
+        total_value = 0
+
+        # Value here is assumed to be a transmitter instance
+        for value in self.solution.values():
+            # NOTE: Crashes if value is not a Transmitter
+            total_value += value.value
+
+        return total_value
+
+    def get_nodes(self) -> list[Node]:
+        """
+        Return the list of available nodes in the model.
+        """
+        return list(self.solution.keys())
+
+    def get_options(self) -> list[Transmitter]:
+        """
+        Return the list of available transmitters in the model.
+        """
+        return self.transmitters
+
+    def get_empty_node(self) -> Node:
+        """
+        Returns the first empty node.
+        """
+        for node in self.get_nodes():
+            if not self.has_value(node):
+                return node
+
+        return None
+
+    def get_possibilities(self, node:Node) -> list[Transmitter]:
         """
         Returns a list of all available values that can be assigned to this
         node, based on assigned values of neighbours.
         """
-        available_options = set(options)
+        available_options = set(self.get_options())
 
         unavailable_options = set()
         for neighbour in node.get_neighbours():
@@ -16,7 +81,7 @@ class Model():
 
         return list(available_options - unavailable_options)
 
-    def is_valid(self, node):
+    def is_valid(self, node:Node) -> bool:
         """
         Returns whether the node is valid. A node is valid when there are no
         neighbours with the same value, and it's value is not None.
@@ -30,73 +95,23 @@ class Model():
 
         return True
 
-    def has_value(self, node):
+    def has_value(self, node) -> bool:
         """
-        Returns a boolean that tells if a node is assigned a value.
+        Returns whether the node has an assigned value.
         """
         return self.solution[node] is not None
-
-    def get_violations(self):
+        
+    def set_value(self, node:Node, value:Transmitter) -> None:
         """
-        Returns all nodes that have a neighbour with the same value.
-        """
-        violations = []
-
-        for node in self.graph.get_nodes():
-            if not self.is_valid(node):
-                violations.append(node)
-
-        return violations
-
-    def is_solution(self):
-        """
-        Returns True if each node in the graph is assigned a value.
-        False otherwise.
-        """
-        for node in self.graph.get_nodes():
-            if self.has_value(node) is None:
-                return False
-
-        return True
-
-    def calculate_value(self):
-        """
-        Returns the sum of the values of all nodes.
-        """
-        value = 0
-        for node in self.graph.get_nodes():
-            value += self.solution[node].value
-            
-        return value
-
-    def get_empty_node(self):
-        """
-        Returns the first empty node.
-        """
-        for node in self.solution:
-            if not self.has_value(node):
-                return node
-
-        return None
-
-    def set_value(self, node, value):
-        """
-        Assign a value to a node in the solution.
+        Assigns a value to the node.
         """
         self.solution[node] = value
 
-    def get_value(self, node):
+    def copy(self) -> 'Model':
         """
-        Returns the value corresponding to a node.
+        Copies a model from itself.
         """
-        return self.solution[node]
+        new_model = copy.copy(self)
+        new_model.solution = copy.copy(self.solution)
 
-    def copy(self):
-        """
-        Return a copy of self.
-        """
-        new = Model(self.graph)
-
-        new.solution.update(self.solution)
-
-        return new
+        return new_model

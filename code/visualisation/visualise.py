@@ -3,7 +3,9 @@ from bokeh.models import GeoJSONDataSource
 from bokeh.plotting import figure
 import json
 
-def visualise(model, geo_file):
+from code.classes.model import Model
+
+def visualise(model: Model, geo_file: str) -> None:
     """
     Visualisation code that uses bokeh and geometry data from a JSON file
     to represent a coloured graph.
@@ -13,16 +15,17 @@ def visualise(model, geo_file):
         data = json.load(geo_file)
 
     # Get the nodes of the regions in order of uid.
-    regions = [node for node in model.solution]
+    regions = [node for node in model.get_nodes()]
     name = [node.id for node in regions]
-    cost = [model.get_value(node).value if node is not None else 0
+    cost = [model.solution[node].value if node is not None else 0
             for node in regions]
-    colour = [model.get_value(node).colour.get_web() if node is not None else "grey"
+    colour = [model.solution[node].colour.get_web() if node is not None else "grey"
               for node in regions]
-    transmitter = [model.get_value(node).name if node is not None else "None"
+    transmitter = [model.solution[node].name if node is not None else "None"
                    for node in regions]
 
     for index, region in enumerate(data['features']):
+        region['properties']['full_name'] = region['properties'].get('name') if region['properties'].get('name') else name[index]
         region['properties']['name'] = name[index]
         region['properties']['cost'] = cost[index]
         region['properties']['colour'] = colour[index]
@@ -34,7 +37,7 @@ def visualise(model, geo_file):
     # Set the Bokeh tooltips.
     tooltips = [
         ("(x,y)", "($x, $y)"),
-        ("Region", "@name"),
+        ("Region", "@full_name"),
         ("Transmitter", "@transmitter"),
         ("Cost", "@cost")
     ]

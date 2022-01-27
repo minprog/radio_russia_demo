@@ -4,11 +4,11 @@ from .node import Node
 
 
 class Graph():
-    def __init__(self, source_file, geo_json=None):
+    def __init__(self, source_file: str, geo_json=None):
         self.nodes = self.load_nodes(source_file)
         self.load_neighbours(source_file)
 
-    def load_nodes(self, source_file):
+    def load_nodes(self, source_file: str) -> dict[str, Node]:
         """
         Load all the nodes into the graph.
         """
@@ -21,7 +21,7 @@ class Graph():
 
         return nodes
 
-    def load_neighbours(self, source_file):
+    def load_neighbours(self, source_file: str) -> None:
         """
         Load all the neighbours into the loaded nodes.
         """
@@ -43,8 +43,16 @@ class Graph():
                     neighbour = self.nodes[neighbour]
                     self.nodes[node_id].add_neighbour(neighbour)
 
+<<<<<<< HEAD
     def get_nodes(self):
         """
         Returns all nodes in the graph.
         """
         return self.nodes.values()
+=======
+    def get_nodes(self) -> list[Node]:
+        """
+        Returns the nodes in the graph.
+        """
+        return list(self.nodes.values())
+>>>>>>> dev

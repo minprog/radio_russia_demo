@@ -1,20 +1,20 @@
 class Node():
-    def __init__(self, name, uid):
+    def __init__(self, name: str, uid: str):
         self.name = name
         self.id = uid
-        self.neighbours = set()
+        self.neighbours = {}
+        
+    def add_neighbour(self, node: 'Node') -> None:
+        """
+        Add a neighbour node to the current node.
+        """
+        self.neighbours[node.id] = node
 
-    def add_neighbour(self, node):
+    def get_neighbours(self) -> list['Node']:
         """
-        Add a node to the collection of neighbours.
+        Returns the neighbouring nodes
         """
-        self.neighbours.add(node)
-
-    def get_neighbours(self):
-        """
-        Returns list of own neighbours
-        """
-        return list(self.neighbours)
+        return list(self.neighbours.values())
 
     def __repr__(self):
         """
