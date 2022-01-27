@@ -3,6 +3,8 @@ import math
 
 from .hillclimber import HillClimber
 
+from code.classes.model import Model
+from code.classes.node import Node
 
 class SimulatedAnnealing(HillClimber):
     """
@@ -13,15 +15,15 @@ class SimulatedAnnealing(HillClimber):
     Most of the functions are similar to those of the HillClimber class, which is why
     we use that as a parent class.
     """
-    def __init__(self, graph, transmitters, temperature=1):
+    def __init__(self, model: Model, temperature: int or float=1):
         # Use the init of the Hillclimber class
-        super().__init__(graph, transmitters)
+        super().__init__(model)
 
         # Starting temperature and current temperature
         self.T0 = temperature
         self.T = temperature
 
-    def update_temperature(self):
+    def update_temperature(self) -> None:
         """
         This function implements a *linear* cooling scheme.
         Temperature will become zero after all iterations passed to the run()
@@ -35,13 +37,13 @@ class SimulatedAnnealing(HillClimber):
 
         # where alpha can be any value below 1 but above 0
 
-    def check_solution(self, new_graph):
+    def check_solution(self, new_model: Model) -> None:
         """
         Checks and accepts better solutions than the current solution.
         Also sometimes accepts solutions that are worse, depending on the current
         temperature.
         """
-        new_value = new_graph.calculate_value()
+        new_value = new_model.calculate_value()
         old_value = self.value
 
         # Calculate the probability of accepting this new graph
@@ -53,7 +55,7 @@ class SimulatedAnnealing(HillClimber):
 
         # Pull a random number between 0 and 1 and see if we accept the graph!
         if random.random() < probability:
-            self.graph = new_graph
+            self.graph = new_model
             self.value = new_value
 
         # Update the temperature

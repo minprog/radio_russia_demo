@@ -1,5 +1,5 @@
 from .depth_first import DepthFirst
-
+from code.classes.model import Model
 
 class BreadthFirst(DepthFirst):
     """"
@@ -9,7 +9,7 @@ class BreadthFirst(DepthFirst):
     we use that as a parent class.
     """
 
-    def get_next_state(self):
+    def get_next_state(self) -> Model:
         """
         Method that gets the next state from the list of states.
 
