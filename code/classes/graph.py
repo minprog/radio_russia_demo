@@ -43,16 +43,8 @@ class Graph():
                     neighbour = self.nodes[neighbour]
                     self.nodes[node_id].add_neighbour(neighbour)
 
-<<<<<<< HEAD
-    def get_nodes(self):
-        """
-        Returns all nodes in the graph.
-        """
-        return self.nodes.values()
-=======
     def get_nodes(self) -> list[Node]:
         """
         Returns the nodes in the graph.
         """
         return list(self.nodes.values())
->>>>>>> dev
