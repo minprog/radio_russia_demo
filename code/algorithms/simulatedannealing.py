@@ -27,11 +27,11 @@ class SimulatedAnnealing(HillClimber):
         Temperature will become zero after all iterations passed to the run()
         method have passed.
         """
-        self.T = self.T - (self.T0 / self.iterations)
+        # self.T = self.T - (self.T0 / self.iterations)
 
         # Exponential would look like this:
-        # alpha = 0.99
-        # self.T = self.T * alpha
+        alpha = 0.99
+        self.T = self.T * alpha
 
         # where alpha can be any value below 1 but above 0
 

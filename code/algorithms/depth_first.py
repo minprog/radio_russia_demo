@@ -14,6 +14,11 @@ class DepthFirst:
         self.best_solution = None
         self.best_value = float('inf')
 
+        self.visited_state_count = 0
+        self.max_states_size = len(self.states)
+        self.states_sizes = []
+        self.solution_count = 0
+
     def get_next_state(self):
         """
         Method that gets the next state from the list of states.
@@ -44,14 +49,24 @@ class DepthFirst:
         if new_value <= old_value:
             self.best_solution = new_graph
             self.best_value = new_value
-            print(f"New best value: {self.best_value}")
 
+    def size(self):
+        return len(self.states)
+
+    def done(self):
+        return self.size() == 0
+         
     def run(self):
         """
         Runs the algorithm untill all possible states are visited.
         """
-        while self.states:
+        while not self.done():
             new_graph = self.get_next_state()
+
+            # Statistical analysis
+            self.visited_state_count += 1
+            self.max_states_size = max(self.size(), self.max_states_size)
+            self.states_sizes.append(self.size())
 
             # Retrieve the next empty node.
             node = new_graph.get_empty_node()
@@ -59,6 +74,39 @@ class DepthFirst:
             if node is not None:
                 self.build_children(new_graph, node)
             else:
+                self.solution_count += 1
+                # Stop if we find a solution
+                # self.check_solution(new_graph)
+                # break
+
+                # or ontinue looking for better graph
+                self.check_solution(new_graph)
+
+        # Update the input graph with the best result found.
+        self.graph = self.best_solution
+
+class BranchAndBound(DepthFirst):
+    def run(self):
+        """
+        Runs the algorithm without visiting states worse than encountered.
+        """
+        while not self.done():
+            new_graph = self.get_next_state()
+
+            # Statistical analysis
+            self.visited_state_count += 1
+            self.max_states_size = max(self.size(), self.max_states_size)
+            self.states_sizes.append(self.size())
+
+            # Retrieve the next empty node.
+            node = new_graph.get_empty_node()
+
+            if node is not None:
+                # Only continue with the branch if it can be better than current best.
+                if new_graph.calculate_value() < self.best_value - self.transmitters[0].value:
+                    self.build_children(new_graph, node)
+            else:
+                self.solution_count += 1
                 # Stop if we find a solution
                 # self.check_solution(new_graph)
                 # break

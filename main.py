@@ -7,6 +7,13 @@ from code.algorithms import breadth_first as bf
 from code.algorithms import hillclimber as hc
 from code.algorithms import simulatedannealing as sa
 
+from experiments.random import random_experiment
+from experiments.greedy import greedy_experiment
+from experiments.depth_first import depth_first_experiment
+from experiments.breadth_first import breadth_first_experiment
+from experiments.hillclimber import hillclimber_experiment
+from experiments.simulatedannealing import simulatedannealing_experiment
+
 from code.visualisation import visualise as vis
 
 if __name__ == "__main__":
@@ -26,6 +33,10 @@ if __name__ == "__main__":
     # print(f"Value of the configuration after Randomized Assignment: "
     #       f"{random_graph.calculate_value()}")
 
+    # random_experiment.baseline(test_graph, transmitters)
+    # random_experiment.baseline_graph()
+
+
     # --------------------------- Greedy ---------------------------------------
     # greedy = gr.Greedy(test_graph, transmitters.get_scheme((1)))
     # greedy.run()
@@ -40,16 +51,27 @@ if __name__ == "__main__":
     # print(f"Value of the configuration after RandomGreedy: "
     #       f"{random_greedy.graph.calculate_value()}")
 
+    # greedy_experiment.random_greedy(test_graph, transmitters)
+    # greedy_experiment.greedy(test_graph, transmitters)
+    # greedy_experiment.random_greedy_graph()
+    # greedy_experiment.base_vs_random_graph()
+
     # --------------------------- Depth First ----------------------------------
     # NOTE: We use [0:4] to only use the first four transmitters, which makes this
     # take longer, but we already know (four colour theorem) that it should be
     # possible...
 
-    depth = df.DepthFirst(test_graph, transmitters.get_scheme(1)[0:4])
-    depth.run()
+    # depth = df.DepthFirst(test_graph, transmitters.get_scheme(1)[0:4])
+    # depth.run()
     
-    print(f"Value of the configuration after Depth First: "
-          f"{depth.graph.calculate_value()}")
+    # print(f"Value of the configuration after Depth First: "
+    #       f"{depth.graph.calculate_value()}")
+
+    # depth_first_experiment.depth_first(test_graph, transmitters)
+    # depth_first_experiment.branchandbound(test_graph, transmitters)
+    # depth_first_experiment.depth_first_table()
+    # depth_first_experiment.depth_first_memory_graph()
+    # depth_first_experiment.depth_first_memory_comparison()
 
     # --------------------------- Breadth First --------------------------------
     # Note: this WILL crash on any of the maps provided, but should work for
@@ -61,6 +83,14 @@ if __name__ == "__main__":
     # print(f"Value of the configuration after Breadth First: "
     #       f"{breadth.graph.calculate_value()}")
 
+    # breadth_first_experiment.breadth_first(test_graph, transmitters)
+    # breadth_first_experiment.best_first(test_graph, transmitters)
+    # breadth_first_experiment.breadth_first_table()
+    # breadth_first_experiment.breadth_first_memory_graph()
+    # breadth_first_experiment.breadth_first_memory_comparison()
+    # breadth_first_experiment.constructive_memory_comparison()
+    # breadth_first_experiment.constructive_comparison()
+
     # --------------------------- Hill Climber ---------------------------------
     # print("Setting up Hill Climber...")
     # climber = hc.HillClimber(random_graph, transmitters.get_scheme(1))
@@ -70,6 +100,17 @@ if __name__ == "__main__":
 
     # print(f"Value of the configuration after Hill Climber: "
     #       f"{climber.graph.calculate_value()}")
+
+    # hillclimber_experiment.hillclimb(test_graph, transmitters)
+    # hillclimber_experiment.hillclimb_continue(test_graph, transmitters, "results/hillclimber/hillclimber.csv")
+    # hillclimber_experiment.hillclimb_graph()
+
+    # hillclimber_experiment.hillclimber_averages(test_graph, transmitters)
+    # hillclimber_experiment.hillclimber_averages_graph()
+    # hillclimber_experiment.hillclimber_averages_filled_graph()
+
+    # hillclimber_experiment.hillclimber_xopt_comparison(test_graph, transmitters)
+    # hillclimber_experiment.hillclimber_xopt_comparison_graph()
 
     # --------------------------- Simulated Annealing --------------------------
     # It is very difficult to find a good starting temperature for SA. A rule to
@@ -91,3 +132,14 @@ if __name__ == "__main__":
     # --------------------------- Visualisation --------------------------------
     # vis.visualise(climber.graph,
     #               f"data/{data_folder}/{data_folder}_regions.geojson")
+
+    # simulatedannealing_experiment.simulateannealing(test_graph, transmitters)
+    # simulatedannealing_experiment.simulateannealing_continue(test_graph, transmitters, "results/simulatedannealing/simulatedannealing.csv")
+    # simulatedannealing_experiment.simulateannealing_graph()
+
+    # simulatedannealing_experiment.simulatedannealing_averages(test_graph, transmitters)
+    # simulatedannealing_experiment.simulatedannealing_averages_graph()
+    # simulatedannealing_experiment.simulatedannealing_averages_filled_graph()
+
+    # simulatedannealing_experiment.simulatedannealing_temperature_comparisons(test_graph, transmitters)
+    simulatedannealing_experiment.simulatedannealing_temperature_comparisons_graph()

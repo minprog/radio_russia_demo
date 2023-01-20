@@ -1,4 +1,5 @@
 import csv
+import json
 
 from .node import Node
 
@@ -72,7 +73,9 @@ class Graph():
         """
         value = 0
         for node in self.nodes.values():
-            value += node.value.value
+            # Allow calculation for partial solutions.
+            if node.value:
+                value += node.value.value
 
         return value
 
@@ -85,3 +88,19 @@ class Graph():
                 return node
 
         return None
+
+    def to_json(self):
+        """
+        Serialize a graph to a JSON string.
+        """
+        return json.dumps({node.id: node.value.name for node in self.nodes.values()})
+
+    def from_json(self, data, transmitters):
+        """
+        Read and assign node values from a JSON string.
+        """
+        data = json.loads(data)
+
+        transmitter_map = {transmitter.name: transmitter for transmitter in transmitters}
+        for node, value in data.items():
+            self.nodes[node].value = transmitter_map[value]

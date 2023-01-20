@@ -18,6 +18,8 @@ class HillClimber:
 
         self.transmitters = transmitters
 
+        self.iterations = 0
+
     def mutate_single_node(self, new_graph):
         """
         Changes the value of a random node with a random valid value.
@@ -49,7 +51,7 @@ class HillClimber:
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
-        self.iterations = iterations
+        self.iterations += iterations
 
         for iteration in range(iterations):
             # Nice trick to only print if variable is set to True
