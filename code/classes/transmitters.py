@@ -47,6 +47,9 @@ class Transmitter:
         self.value = value
         self.colour = colour
 
+    def __str__(self):
+        return f"({self.name} - {self.value})"
+
     def __hash__(self):
         """
         Makes sure that we can put transmitters in set() and as a key in a

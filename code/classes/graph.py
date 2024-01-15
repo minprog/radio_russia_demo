@@ -43,45 +43,51 @@ class Graph():
                     neighbour = self.nodes[neighbour]
                     self.nodes[node_id].add_neighbour(neighbour)
 
-    def get_violations(self):
-        """
-        Returns the ids of all nodes that have a neighbour with the same value.
-        """
-        violations = []
-
-        for node in self.nodes.values():
-            if not node.is_valid():
-                violations.append(node)
-
-        return violations
-
-    def is_solution(self):
-        """
-        Returns True if each node in the graph is assigned a value.
-        False otherwise.
-        """
-        for node in self.nodes.values():
-            if not node.has_value():
-                return False
-
-        return True
-
     def calculate_value(self):
         """
         Returns the sum of the values of all nodes.
         """
-        value = 0
+        result = 0
         for node in self.nodes.values():
-            value += node.value.value
+            transmitter = node.value
+            if not transmitter:
+                print("Something is wrong!")
+                continue
+            result += transmitter.value
+        return result
 
-        return value
 
-    def get_empty_node(self):
+
+    def is_solution(self):
         """
-        Returns the first empty node.
+        Returns True if each node in the graph is assigned a value.
         """
         for node in self.nodes.values():
-            if not node.has_value():
-                return node
+            if node.value is None:
+                return False
+        return True
 
-        return None
+    def is_valid(self):
+        """
+        Returns True if each node in the graph is assigned a value
+        AND none of the nodes have neighbours of the same value.
+        """
+        for node in self.nodes.values():
+            if node.value is None:
+                return False
+            if not node.is_valid():
+                return False
+        return True
+
+    def show(self):
+        """
+
+        """
+        result = ""
+        for node in self.nodes.values():
+            result += f"Node {node.name} : {node.value} - {', '.join([neighbour.name for neighbour in node.get_neighbours()])}\n"
+
+        if self.is_solution():
+            result += f"\n Value: {self.calculate_value()}\n"
+
+        return result
