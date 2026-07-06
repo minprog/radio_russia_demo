@@ -1,0 +1,14 @@
+{
+    "data_folder": "nl",
+    "function": "simulatedannealing_temperature_comparisons",
+    "params": {
+        "runs": 100,
+        "iterations": 500,
+        "temperature_range": [
+            1,
+            60,
+            10
+        ],
+        "output_file_template": "results/simulatedannealing/simulatedannealing_temp_{n}.csv"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "data_folder": "nl",
+    "function": "hillclimb",
+    "params": {
+        "iterations": 1000,
+        "output_file": "results/hillclimber/hillclimber.csv"
+    }
+}

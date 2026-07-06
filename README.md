@@ -6,37 +6,57 @@ De russische overheid wil een goede verdeling van zendfrequenties. Er zijn preci
 
 ### Vereisten
 
-Deze codebase is volledig geschreven in Python 3.7. In requirements.txt staan alle benodigde packages om de code succesvol te draaien. Deze zijn gemakkelijk te installeren via pip dmv. de volgende instructie:
+Deze codebase is volledig geschreven in Python (>=3.13). In pyproject.toml staan alle benodigde packages om de code succesvol te draaien. Deze zijn gemakkelijk te installeren via pip dmv. de volgende instructie:
 
 ```
-pip install -r requirements.txt
-```
-
-Of via conda:
-
-```
-conda install --file requirements.txt
+pip install -e .
 ```
 
 ### Gebruik
 
-Een voorbeeldje kan gerund worden door aanroepen van:
+Na installatie is de package te draaien met `python -m radio_russia`, met twee
+subcommando's: `algorithm` en `experiment`.
+
+**Let op:** commando's (en de standalone visualisatiescripts) verwachten dat je
+ze vanuit de root van de repository draait, aangezien paden naar `data/`,
+`experiments/` en `results/` relatief zijn ten opzichte van de working
+directory.
+
+Een los algoritme draaien op een dataset:
 
 ```
-python main.py
+python -m radio_russia algorithm hillclimber --iterations 2000 --visualise
 ```
 
-Het bestand geeft een voorbeeld voor gebruik van de verschillende functies.
+Zie `python -m radio_russia algorithm --help` voor alle beschikbare algoritmes en opties.
+
+De experimenten in `/experiments` zijn reproduceerbaar via hun bijbehorende
+JSON-configuratiebestand:
+
+```
+python -m radio_russia experiment experiments/depth_first/depth_first.json
+```
+
+De resultaten van een experiment worden geplot door de bijbehorende scripts in
+`/visualisation`. Elk script staat op zichzelf en is los te draaien nadat het
+experiment is uitgevoerd, bijvoorbeeld:
+
+```
+python visualisation/depth_first/depth_first_memory_graph.py
+```
 
 ### Structuur
 
 De hierop volgende lijst beschrijft de belangrijkste mappen en files in het project, en waar je ze kan vinden:
 
-- **/code**: bevat alle code van dit project
-  - **/code/algorithms**: bevat de code voor algoritmes
-  - **/code/classes**: bevat de drie benodigde classes voor deze case
-  - **/code/visualisation**: bevat de bokeh code voor de visualisatie
+- **/radio_russia**: bevat alle code van dit project
+  - **/radio_russia/algorithms**: bevat de code voor algoritmes
+  - **/radio_russia/classes**: bevat de drie benodigde classes voor deze case
+  - **/radio_russia/visualisation**: bevat de bokeh code voor de visualisatie
 - **/data**: bevat de verschillende databestanden die nodig zijn om de graaf te vullen en te visualiseren
+- **/experiments**: bevat de scripts en JSON-configuraties om de experimenten te draaien
+- **/visualisation**: bevat de scripts die de resultaten van de experimenten plotten
+  - **/visualisation/comparisons**: bevat de scripts die resultaten van meerdere experimenten met elkaar vergelijken
 
 ## Auteurs
 - Quinten van der Post

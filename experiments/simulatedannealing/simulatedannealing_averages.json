@@ -1,0 +1,9 @@
+{
+    "data_folder": "nl",
+    "function": "simulatedannealing_averages",
+    "params": {
+        "runs": 100,
+        "iterations": 500,
+        "output_file": "results/simulatedannealing/simulatedannealing_averages.csv"
+    }
+}

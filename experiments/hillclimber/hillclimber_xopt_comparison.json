@@ -1,0 +1,13 @@
+{
+    "data_folder": "nl",
+    "function": "hillclimber_xopt_comparison",
+    "params": {
+        "runs": 100,
+        "iterations": 500,
+        "mutate_nodes_range": [
+            1,
+            6
+        ],
+        "output_file_template": "results/hillclimber/hillclimber_xopt_{n}.csv"
+    }
+}

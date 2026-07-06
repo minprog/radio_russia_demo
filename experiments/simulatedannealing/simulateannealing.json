@@ -1,0 +1,8 @@
+{
+    "data_folder": "nl",
+    "function": "simulateannealing",
+    "params": {
+        "iterations": 100,
+        "output_file": "results/simulatedannealing/simulatedannealing.csv"
+    }
+}

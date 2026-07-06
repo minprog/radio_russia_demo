@@ -1,0 +1,8 @@
+{
+    "data_folder": "nl",
+    "function": "breadth_first",
+    "params": {
+        "transmitter_count": 4,
+        "output_file": "results/breadth_first/breadth_first.json"
+    }
+}

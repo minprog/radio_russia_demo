@@ -1,0 +1,8 @@
+{
+    "data_folder": "nl",
+    "function": "branchandbound",
+    "params": {
+        "transmitter_count": 4,
+        "output_file": "results/depth_first/branchandbound.json"
+    }
+}

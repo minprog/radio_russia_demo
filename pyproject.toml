@@ -1,0 +1,19 @@
+[project]
+name = "radio_russia"
+version = "0.1.0"
+description = "Placing the ideal transmitters to broadcast radio signals"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "colour==0.1.5",
+    "bokeh==3.9.1",
+    "matplotlib==3.11.0",
+    "numpy==2.5.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["radio_russia*"]

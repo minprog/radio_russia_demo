@@ -1,0 +1,7 @@
+{
+    "data_folder": "nl",
+    "function": "greedy",
+    "params": {
+        "output_file": "results/greedy/greedy.csv"
+    }
+}
